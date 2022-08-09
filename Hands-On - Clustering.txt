@@ -1,0 +1,8 @@
+from sklearn import datasets,cluster,metrics
+iris=datasets.load_iris()
+km_cls=cluster.KMeans(n_clusters=3)
+print(metrics.homogeneity_score(km_cls.fit_predict(iris.data),iris.target))
+agg_cls=cluster.AgglomerativeClustering(n_clusters=3)
+print(metrics.homogeneity_score(agg_cls.fit_predict(iris.data),(iris.target)))
+af_cls=cluster.AffinityPropagation().fit(iris.data)
+print(metrics.completeness_score(af_cls.predict(iris.data),iris.target))

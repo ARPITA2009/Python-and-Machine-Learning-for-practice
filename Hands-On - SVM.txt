@@ -1,0 +1,41 @@
+#Write your code here
+import sklearn.datasets as datasets
+#import sklearn.model_selection as ms
+from sklearn.model_selection import train_test_split
+
+from sklearn.preprocessing import StandardScaler
+
+
+digits = datasets.load_digits();
+
+X = digits.data
+y = digits.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=30, stratify=y)
+
+print(X_train.shape)
+print(X_test.shape)
+
+from sklearn.svm import SVC
+svm_clf = SVC().fit(X_train, y_train)
+print(svm_clf.score(X_test,y_test))
+
+
+X1 = digits.data
+scaler = StandardScaler()
+scaler.fit(X1)
+digits_standardized = scaler.transform(X1)
+
+y1 = digits.target
+
+X1_train, X1_test, y1_train, y1_test = train_test_split(digits_standardized, y1, random_state=30, stratify=y)
+
+#print(X_train.shape)
+#print(X_test.shape)
+
+svm_clf2 = SVC().fit(X1_train, y1_train)
+print(svm_clf2.score(X1_test,y1_test))
+
+
+
+

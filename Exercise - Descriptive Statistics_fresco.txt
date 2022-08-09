@@ -1,0 +1,12 @@
+from scipy import stats
+import numpy as np
+
+s = [26, 15, 8, 44, 26, 13, 38, 24, 17, 29]
+
+print(np.mean(s))
+print(np.median(s))
+print(stats.mode(s))
+print(np.percentile(s, [25,75], interpolation='lower'))
+print(stats.iqr(s, rng=(25, 75), interpolation='lower'))
+print(stats.skew(s))
+print(stats.kurtosis(s))

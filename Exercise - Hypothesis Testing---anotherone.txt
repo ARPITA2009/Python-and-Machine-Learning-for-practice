@@ -1,0 +1,10 @@
+from scipy import stats
+import numpy as np
+
+s1 = [12, 7, 3, 11, 8, 5, 14, 7, 9, 10]
+s2 = [8, 7, 4, 14, 6, 7, 12, 5, 5, 8]
+
+t,p = stats.ttest_rel(s1,s2)
+
+print(t)
+print(p)

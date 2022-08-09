@@ -1,0 +1,22 @@
+# Put your code here
+from pyspark.sql import SparkSession
+spark = SparkSession \
+    .builder \
+    .appName("Data Frame Personal") \
+    .config("spark.some.config.option", "some-value") \
+    .getOrCreate()
+from pyspark.sql import *
+Personal = Row("ID","Name","Age","Area of Interest")
+data1 = Personal("1","Jack", "22", "Data Science")
+data2 = Personal("2","Luke", "21", "Data Analytics")
+data3 = Personal("3","Leo", "24", "Micro Services")
+data4 = Personal("4","Mark", "21", "Data Analytics")
+
+PersonalData=[data1,data2,data3,data4]
+df = spark.createDataFrame(PersonalData)
+Result1 = df.describe('Age')
+Result1.coalesce(1).write.parquet("Age")
+Result2 = df.select('ID','Name','Age').orderBy('Name',ascending=False)
+Result2.show()
+Result2.coalesce(1).write.parquet("NameSorted")
+#df.show()

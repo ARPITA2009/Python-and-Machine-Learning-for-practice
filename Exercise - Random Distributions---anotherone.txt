@@ -1,0 +1,8 @@
+from scipy import stats
+import numpy as np
+
+x = stats.norm(loc=32, scale=4.5)
+np.random.seed(1)
+y = x.pdf(np.random.rand(100))
+print(y)
+print(np.mean(y) - 32)

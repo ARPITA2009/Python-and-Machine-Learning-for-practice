@@ -1,0 +1,15 @@
+#Put your code here
+
+from pyspark.sql import SparkSession
+spark = SparkSession \
+    .builder \
+    .appName("Data Frame EMPLOYEE") \
+    .config("spark.some.config.option", "some-value") \
+    .getOrCreate()
+df = spark.read.json("emp.json")
+df.show()
+df.coalesce(1).write.parquet("Employees")
+pf = spark.read.parquet("Employees")
+dfNew = pf.filter(pf.stream=='JAVA')
+dfNew.show()
+dfNew.coalesce(1).write.parquet("JavaEmployees")

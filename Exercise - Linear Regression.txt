@@ -1,0 +1,13 @@
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+import numpy as np
+import patsy
+
+mtcar_data = sm.datasets.get_rdataset('mtcars')
+df = mtcar_data.data
+wt = np.array(df.wt)
+mpg =  np.array(df.mpg)
+data = {'wt':wt, 'mpg':mpg}
+linear_model1 = smf.ols('wt~ mpg', data)
+linear_result1 = linear_model1.fit()
+print(linear_result1.rsquared)

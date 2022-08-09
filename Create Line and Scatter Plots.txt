@@ -1,0 +1,45 @@
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.gridspec as gridspec
+#Write your code here
+def test_sine_wave_plot():
+	fig = plt.figure(figsize=(12,3))
+	ax = fig.add_subplot(111)
+	t = np.linspace(.0,2,200)
+	v = np.sin(2.5*np.pi*t)
+	xti = np.arange(0,2.2,0.2)
+	yti = [-1,0,1]
+	plt.plot(t,v,color="red",label="sin(t)")
+	ax.set(title="Sine Wave",xlabel="Time (seconds)",ylabel="Voltage (mV)",
+		   xlim=(0,2),ylim=(-1,1),xticks=xti,yticks=yti)
+	ax.grid(True,linestyle="--")
+	ax.legend()
+	ax.figure.savefig('sinewave.png')
+test_sine_wave_plot()
+
+def test_multi_curve_plot():
+	fig = plt.figure(figsize=(12,3))
+	ax = fig.add_subplot(111)
+	x = np.linspace(.0,5,20)
+	y1,y2,y3 = x,x**2,x**3
+	plt.plot(x,y1,color="red",marker="o",label="y = x")
+	plt.plot(x,y2,color="green",marker="s",label="y = x**2")
+	plt.plot(x,y3,color="blue",marker="^",label="y = x**3")
+	ax.set(title="Linear, Quadratic, & Cubic Equations",xlabel="X",ylabel="f(X)")
+	ax.legend()
+	ax.figure.savefig('multicurve.png')
+test_multi_curve_plot()
+
+def test_scatter_plot():
+	fig = plt.figure(figsize=(12,3))
+	ax = fig.add_subplot(111)
+	s = [50, 60, 55, 50, 70, 65, 75, 65, 80, 90, 93, 95]
+	months = list(range(1,13))
+	plt.scatter(months,s,color="red",edgecolor="black")
+	ax.set(title="Cars Sold by Company 'X' in 2017",xlabel="Months",ylabel="No. of Cars Sold",
+		   xlim=(0,13),ylim=(20,100),xticks=list(range(1,13,2)))
+	ax.set_xticklabels(['Jan', 'Mar', 'May', 'Jul', 'Sep', 'Nov'])
+	ax.figure.savefig('scatter.png')
+test_scatter_plot()

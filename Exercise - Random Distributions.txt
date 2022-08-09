@@ -1,0 +1,5 @@
+from scipy import stats
+import numpy as np
+np.random.seed(1)  
+x = stats.binom.rvs(n=1, p=0.5, size=10000)      
+print(np.bincount(x)[0])

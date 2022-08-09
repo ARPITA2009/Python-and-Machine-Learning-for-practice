@@ -1,0 +1,23 @@
+#Write your code here
+import pandas as pd
+import numpy as np
+
+heights_A =  pd.Series([176.2, 158.4, 167.6, 156.2, 161.4])
+heights_A.index = ['s1', 's2', 's3', 's4','s5']
+print(heights_A[1])
+print(heights_A[1:4])
+
+weights_A = pd.Series([85.1, 90.2, 76.8, 80.4 , 78.9])
+weights_A.index = ['s1', 's2', 's3', 's4','s5']
+
+df_A = pd.DataFrame()
+df_A['Student_height'] = heights_A
+df_A['Student_weight'] = weights_A
+height = df_A['Student_height']
+print(type(height))
+df_s1s2 = df_A.iloc[0:2]
+print(df_s1s2)
+df_s2s5s1 = df_A.iloc[[1,4,0]]
+print(df_s2s5s1)
+df_s1s4 = df_A.iloc[[0,3]]
+print(df_s1s4)

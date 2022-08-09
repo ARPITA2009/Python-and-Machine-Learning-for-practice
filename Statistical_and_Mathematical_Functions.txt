@@ -1,0 +1,20 @@
+# Put your code here
+from pyspark.sql import SparkSession
+spark = SparkSession \
+    .builder \
+    .appName("Data Frame PASSANGER") \
+    .config("spark.some.config.option", "some-value") \
+    .getOrCreate()
+from pyspark.sql.functions import rand
+from pyspark.sql import *
+df = spark.range(0, 10).withColumn('rand1', rand(seed=10)).withColumn('rand2', rand(seed=27))
+cov = df.stat.cov('rand1', 'rand2')
+corr = df.stat.corr('rand1', 'rand2')
+cov_corr = Row("Stats","Value")
+data1 = cov_corr("Co-variance", cov)
+data2 = cov_corr("Correlation", corr)
+cov_corrData=[data1,data2]
+Result = spark.createDataFrame(cov_corrData)
+Result.show()
+
+Result.coalesce(1).write.parquet("Result")

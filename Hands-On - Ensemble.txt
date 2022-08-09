@@ -1,0 +1,33 @@
+#Write your code here
+from sklearn.tree import DecisionTreeRegressor
+import sklearn.datasets as d
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+import pandas as pd
+import numpy as np
+np.random.seed(100)
+boston=d.load_boston()
+X_df = pd.DataFrame(boston.data, columns=boston.feature_names)
+y_df = pd.DataFrame(boston.target, columns=["target"])
+X_train, X_test, y_train, y_test = train_test_split( X_df, y_df,random_state=30)
+print(X_train.shape)
+print(X_test.shape)
+rf_reg = RandomForestRegressor()
+rf_reg = rf_reg .fit(X_train, y_train) 
+print('Accuracy of Train Data :',rf_reg .score(X_train,y_train))
+print('Accuracy of Test Data :',rf_reg .score(X_test,y_test))
+y_pred=rf_reg.predict(X_test)
+print(y_pred[:2])
+max_score=0
+depth=0
+estimate=0
+estimator=[50,100,200]
+for d in range(3,6):
+  for esti in estimator:
+    rf_reg2 = RandomForestRegressor(max_depth=d,n_estimators=esti)
+    rf_reg2 = rf_reg2.fit(X_train, y_train)
+    score=rf_reg2.score(X_test,y_test)
+    if score>max_score:
+      max_score,depth,estimate = score,d,esti
+      t=(depth,estimate)
+print(t)

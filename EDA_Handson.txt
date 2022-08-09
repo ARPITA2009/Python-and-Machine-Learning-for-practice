@@ -1,0 +1,322 @@
+Mini Project on EDA and Visualization
+Welcome to the Use Case Challenge, In this Scenario,You are supposed to perform a EDA and Visualization on Top100 list of Cryptocurrencies dataset.
+
+Instructions:
+
+Add Extra cells for coding if neccessary.
+Finally restart kernel and run all the cells after the completion of the challenge.
+Run the below cell to import the dataset file and the basic neccessary packages
+Note: These are the essential packages required to complete this task, please select appropriate modules from the packages listed below to complete the task depending on the specified situations.
+
+!wget https://hr-projects-assets-prod.s3.amazonaws.com/ct7fl6bona6/b1093f2c1c57d266329c1cce18ee34ad/Data.csv
+--2021-08-15 17:00:36--  https://hr-projects-assets-prod.s3.amazonaws.com/ct7fl6bona6/b1093f2c1c57d266329c1cce18ee34ad/Data.csv
+Resolving hr-projects-assets-prod.s3.amazonaws.com (hr-projects-assets-prod.s3.amazonaws.com)... 52.217.170.41
+Connecting to hr-projects-assets-prod.s3.amazonaws.com (hr-projects-assets-prod.s3.amazonaws.com)|52.217.170.41|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 6102 (6.0K) [binary/octet-stream]
+Saving to: ‘Data.csv.1’
+
+Data.csv.1          100%[===================>]   5.96K  --.-KB/s    in 0s      
+
+2021-08-15 17:00:37 (90.3 MB/s) - ‘Data.csv.1’ saved [6102/6102]
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+### Load the Dataset
+**Note:**
+- Read the dataset only from the Data.csv file and save it in the variable df.
+- Don't use other data files like Data.csv.1, Data.csv.2, Data.csv.3,.....etc
+#Write your code here
+df = pd.read_csv("Data.csv", header = 0)
+df.head()
+Rank	Currency_Name	Market_Capital	Price	Circulating_Supply	Volume(24h)	Change(24h)
+0	1	Bitcoin	6.021918e+10	3631.72	1.658145e+07	1.226800e+09	-0.0084
+1	2	Ethereum	2.506128e+10	264.44	9.477220e+07	4.625760e+08	0.0132
+2	3	Bitcoin Cash	6.815418e+09	410.47	1.660378e+07	2.608570e+08	-0.0322
+3	4	Ripple	6.646330e+09	0.17	3.834384e+10	4.194500e+07	-0.0042
+4	5	Dash	2.607961e+09	344.36	7.573378e+06	9.714230e+07	0.0362
+## Question 1
+### Extract the first 3 rows of your dataframe then convert it into dictionary with the column names as the key values and their values as list into a dictionary then assign to A1 variable.
+​
+**Note:** The output must be in the following format
+​
+        {Column_Name : List}
+        
+**Example**
+​
+        { 'S.no' : [1,2,3,4],
+          'Name' : ['GridCoin','Golos','BlackCion','Groestlcoin']
+           ........}
+           
+#Write your code here
+A1 = df.head(3).to_dict('list')
+print(A1)
+{'Rank': [1, 2, 3], 'Currency_Name': ['Bitcoin', 'Ethereum', 'Bitcoin Cash'], 'Market_Capital': [60219183594.0, 25061275598.0, 6815417939.0], 'Price': [3631.72, 264.44, 410.47], 'Circulating_Supply': [16581450.0, 94772198.0, 16603775.0], 'Volume(24h)': [1226800000.0, 462576000.0, 260857000.0], 'Change(24h)': [-0.0084, 0.0132, -0.0322]}
+## Question 2
+### Return the Curreny_Name which has highest value in Price column and assign to A2 varaible.
+**Note:** The Output must be String
+​
+#Write your code here
+max_price=df['Price'].max()
+A2 = df.loc[df['Price'] == max_price, 'Currency_Name'].values[0]
+print(A2)
+Bitcoin
+## Question 3
+Change(24h)
+### Return the mean value of the Change(24h) column and assign to A3 variable.
+**Note:** The Output must be Float value
+3
+#Write your code here
+#mean_change= ['Change(24h)]
+A3=df["Change(24h)"].mean()
+print(A3)
+0.013364000000000003
+Question 4
+Return the sorted (Ascending order) list of currency names which are having Market_Capital greater than '2000000000' and Price greater than or equal to '200'. Assign to A4 variable.
+Note: The Output must be list
+
+#Write your code here
+A4=
+Question 5
+Return the lowest value in Volume(24h) column and Assign to A5 variable.
+Note: Output must be Float value.
+
+#Write your code here
+A5=
+Question 6
+Draw the Heatmap with correlation between Rank, Marcket Captial, Price, Circulating_Supply, Volume(24h) and Change(24h). Assign to A6 variable.
+Instructions:
+
+Use seaborn
+Create a figure with figsize(15,8)
+xlabel,ylabel,title must be present
+Plot the heatmap
+Sample Plot image: Image
+
+#Write your code here
+fig, ax = plt.subplots(figsize=(8,8))
+​
+# Plot the Heatmap with axes (ax) and assign the returned object(path collection) to q6
+q6 = 
+​
+#Assigning the object to A6 for validation
+A6=q6
+Question 7
+Draw the barplot containing Top 10 currency names with highest Market Capital And Assign to A7 variable.
+Instructions:
+
+Use Seaborn
+Order the cryptocurrencies is must be in Descending order (i.e,bar corresponding to cryptocurrency with highest market value must be on top of bar plot).
+xlabel,ylabel,title must be present
+Plot the barplot
+Sample Plot image: Image
+
+#Write your code here
+fig7, ax7 = plt.subplots(figsize=(8,8))
+​
+​
+# Plot the countplot with axes (ax7) and assign the returned object(path collection) to q7
+​
+q7 = 
+​
+#Assigning the object,axes to A7 for validation
+A7=[q7,ax7]
+Question 8
+Draw the violinplot that represents the graph of Change(24h). And Assign the variable to A8.
+Instructions:
+
+Use seaborn
+Change(24h) should be in the y-axis
+xlabel,ylabel,title must be present
+Plot the violinplot
+Sample Plot image: Image
+
+#Write your code here
+fig8, ax8 = plt.subplots(figsize=(8,8))
+# Plot the violinplot with axes (ax8) and assign the returned object(path collection) to q8
+q8 =
+​
+​
+#Assigning the object to A8 for validation
+A8=q8
+​
+Question 9
+Draw a scatterplot that represents the relation between Price and Market Capital. And Assign to A9 variable.
+Instructions:
+
+use seaborn
+Consider data as 50 Cryptocurrencies, with higest Market Value
+xlabel,ylabel,title must be present
+Plot the Scatterplot
+Sample Plot image: Image
+
+#Write your code here
+fig9, ax9 = plt.subplots(figsize=(8,8))
+# Plot the scatterplot with axes (ax9) and assign the returned object(path collection) to q9
+​
+​
+q9 = 
+​
+​
+#Assigning the object to A9 for validation
+A9=q9
+Question 10
+Draw the barplot containing Top 10 currency names with Change(24h) in descending order And Assign to A10 variable.
+Instructions:
+
+Use Seaborn
+xlabel,ylabel,title must be present
+Plot the barplot
+Sample Plot image: Image
+
+#Write your code here
+fig10, ax10 = plt.subplots(figsize=(8,8))
+​
+# Plot the barplot with axes (ax10) and assign the returned object(path collection) to q10
+q10 =
+​
+#Assigning the object,axes to A10 for validation
+A10=[q10,ax10]
+Run the below cells to save your output files
+import pickle
+import hashlib
+​
+def save_output(Top100_List, obj):
+    with open(Top100_List,'wb')as f:
+        pickle.dump(obj,f,pickle.HIGHEST_PROTOCOL)   
+​
+def hashit(obj):
+        obj = str(obj).encode()
+        m = hashlib.md5()
+        m.update(bytes(obj))
+        return m.hexdigest()
+​
+##Saving outputs
+​
+save_output("A1.pckl", A1)
+save_output("A2.pckl", A2)
+save_output("A3.pckl", A3)
+save_output("A4.pckl", A4)
+save_output("A5.pckl", A5)
+save_output("A6.pckl", A6)
+save_output("A7.pckl", A7)
+save_output("A8.pckl", A8)
+save_output("A9.pckl", A9)
+save_output("A10.pckl", A10)
+​
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+part1=df.loc[(df['Market_Capital'] > 2000000000) & (df['Price'] >= 200)]
+
+#print(part1)
+
+sort_list=part1.sort_values(["Currency_Name"], ascending=True)
+
+A4 = sort_list['Currency_Name'].tolist()
+
+print(A4)
+
+ 
+
+ 
+
+A5=df["Volume(24h)"].min()
+
+print(A5)
+
+
+
+#Write your code here
+fig, ax = plt.subplots(figsize=(15,8))
+df_new = df[['Rank', 'Market_Capital', 'Price','Circulating_Supply', 'Volume(24h)', 'Change(24h)']]
+corr_matrix = df_new.corr()
+# Plot the Heatmap with axes (ax) and assign the returned object(path collection) to q6
+q6 = sns.heatmap(corr_matrix, vmin=-0.2, vmax=1, annot=True)
+q6.set_title('Heatmap Correlation', fontdict={'fontsize':12}, pad=12);
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+#Assigning the object to A6 for validation
+A6=q6
+
+
+
+
+
+
+#Write your code here
+fig7, ax7 = plt.subplots(figsize=(8,8))
+
+
+# Plot the countplot with axes (ax7) and assign the returned object(path collection) to q7
+
+q7 = df.groupby(['Currency_Name'])['Market_Capital'].last().sort_values(ascending=False).head(10);
+q7 = q7.reset_index()
+q7=sns.barplot(x='Market_Capital',y='Currency_Name',data=q7)
+q7.set_title('Barplot containing Top10 currency names with highest market capital', fontdict={'fontsize':12}, pad=12);
+#plt.xlabel("Market_Capital")
+#plt.ylabel("Currency_Name")
+
+#Assigning the object,axes to A7 for validation
+A7=[q7,ax7]
+
+
+
+
+
+#Write your code here
+fig8, ax8 = plt.subplots(figsize=(8,8))
+# Plot the violinplot with axes (ax8) and assign the returned object(path collection) to q8
+q8 =sns.violinplot(ax = ax8, y = df['Change(24h)'])
+q8.set_title('violinplot for Change(24h)', fontdict={'fontsize':12}, pad=12);
+plt.xlabel("X_axis")
+plt.ylabel("Y_axis")
+
+#Assigning the object to A8 for validation
+A8=q8
+
+
+#Write your code here
+fig9, ax9 = plt.subplots(figsize=(8,8))
+# Plot the scatterplot with axes (ax9) and assign the returned object(path collection) to q9
+
+
+q9 = df.groupby(['Price'])['Market_Capital'].last().sort_values(ascending=False).head(50);
+q9 = q9.reset_index()
+q9=sns.scatterplot(x="Market_Capital",y="Price",data=q9)
+q9.set_title('Scatterplot  between Price and Market_Capital', fontdict={'fontsize':12}, pad=12);
+
+#Assigning the object to A9 for validation
+A9=q9
+
+
+
+#Write your code here
+fig10, ax10 = plt.subplots(figsize=(8,8))
+
+# Plot the barplot with axes (ax10) and assign the returned object(path collection) to q10
+q10 = df.groupby(['Currency_Name'])['Change(24h)'].last().sort_values(ascending=False).head(10);
+q10 = q10.reset_index()
+q10=sns.barplot(x='Change(24h)',y='Currency_Name',data=q10)
+q10.set_title('Barplot containing Top10 currency names with Change(24h)', fontdict={'fontsize':12}, pad=12);
+
+#Assigning the object,axes to A10 for validation
+A10=[q10,ax10]

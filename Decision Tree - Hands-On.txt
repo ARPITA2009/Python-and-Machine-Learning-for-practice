@@ -1,0 +1,36 @@
+#Write your code here
+import sklearn.datasets as datasets
+from sklearn.model_selection import train_test_split 
+from sklearn.tree import DecisionTreeRegressor
+import numpy as np
+np.random.seed(100) 
+boston = datasets.load_boston()
+X_train, X_test, Y_train, Y_test = train_test_split(boston.data, boston.target, random_state=30)
+print(X_train.shape)
+print(X_test.shape)
+
+dt_reg = DecisionTreeRegressor()   
+dt_reg = dt_reg.fit(X_train, Y_train) 
+print(dt_reg.score(X_train,Y_train))
+print(dt_reg.score(X_test,Y_test))
+y_pred=dt_reg.predict(X_test[:2])
+print(y_pred)
+
+
+max_reg = None
+max_score = 0  
+best_max_depth = None
+t=()
+for m in range(2, 6) :
+    rf_reg = DecisionTreeRegressor(max_depth=m)
+    rf_reg = rf_reg.fit(X_train, Y_train) 
+    rf_reg_score = rf_reg.score(X_test,Y_test)
+    #print (m, rf_reg_score ,max_score) 
+    if rf_reg_score > max_score :
+        max_score = rf_reg_score
+        max_reg = rf_reg
+        
+        best_max_depth = rf_reg.max_depth
+        
+        t = m 
+print (t)

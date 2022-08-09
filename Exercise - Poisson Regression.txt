@@ -1,0 +1,10 @@
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+import numpy as np
+import pandas as pd
+
+ins_df = sm.datasets.get_rdataset('Insurance', package='MASS',).data 
+data = {'holders':ins_df['Holders'],'claims':ins_df['Claims']}
+poisson_model = smf.poisson('claims ~ np.log(holders)', data)
+poisson_model_result = poisson_model.fit()
+print(poisson_model_result.resid.sum())

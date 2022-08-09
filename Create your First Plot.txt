@@ -1,0 +1,20 @@
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.gridspec as gridspec
+#Write your code here
+#implement different types of graphs available in python
+#bargraph
+def test_my_first_plot():
+  fig = plt.figure(figsize=(8,6))
+  ax = fig.add_subplot(111)
+  t = [5, 10, 15, 20, 25]
+  d = [25, 50, 75, 100, 125]
+  ax.set(title='Time vs Distance Covered',
+      xlabel='time (seconds)', ylabel='distance (meters)',
+      xlim=(0, 30), ylim=(0,130))
+  plt.plot(t, d, label='d = 5t')
+  plt.legend()
+  plt.show()
+test_my_first_plot()

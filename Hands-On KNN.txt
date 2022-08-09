@@ -1,0 +1,22 @@
+#Write your code here
+import sklearn.datasets as datasets
+from sklearn.model_selection import train_test_split
+iris=datasets.load_iris()
+X_train,X_test,Y_train,Y_test=train_test_split(iris.data,iris.target,stratify=iris.target,random_state=30)
+print(X_train.shape)
+print(X_test.shape)
+from sklearn.neighbors import KNeighborsClassifier
+knn_clf=KNeighborsClassifier()
+knn_clf=knn_clf.fit(X_train,Y_train)
+print(knn_clf.score(X_train,Y_train))
+print(knn_clf.score(X_test,Y_test))
+mx=0
+n=0
+for i in range(3,11):
+  kclass=KNeighborsClassifier(n_neighbors=i)
+  kclass=kclass.fit(X_train,Y_train)
+  z=kclass.score(X_test,Y_test)
+  if z>mx:
+    mx=z
+    n=i
+print(n)
